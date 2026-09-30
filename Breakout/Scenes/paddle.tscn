@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bym1tytxtodb1"]
+
+[ext_resource type="Script" uid="uid://ct4ca4uovuc7b" path="res://Breakout/Scripts/paddle.gd" id="1_fo7jj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcool"]
+size = Vector2(64, 20)
+
+[node name="Paddle" type="CharacterBody2D" unique_id=1485609856]
+collision_mask = 6
+script = ExtResource("1_fo7jj")
+
+[node name="Sprite" type="ColorRect" parent="." unique_id=604352046]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -10.0
+offset_right = 32.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1463597396]
+shape = SubResource("RectangleShape2D_wcool")

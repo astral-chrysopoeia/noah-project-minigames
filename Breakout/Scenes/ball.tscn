@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dfh2l2u2vxcc7"]
+
+[ext_resource type="Script" uid="uid://cevq3umd5ahwy" path="res://Breakout/Scripts/ball.gd" id="1_g4v5q"]
+[ext_resource type="Texture2D" uid="uid://b3n2xjguyjjyv" path="res://Breakout/Sprites/breakout_ball.png" id="2_a6i82"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v5q"]
+radius = 8.0
+
+[node name="Ball" type="Node2D" unique_id=1344927311]
+script = ExtResource("1_g4v5q")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1884495168]
+texture = ExtResource("2_a6i82")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1260030123]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1976587664]
+shape = SubResource("CircleShape2D_g4v5q")
