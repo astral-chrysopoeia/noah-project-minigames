@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c53gclqru5cc" path="res://Breakout/Scripts/brick.gd" id="1_t5cmc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5cmc"]
-size = Vector2(32, 10)
+size = Vector2(36, 12)
 
 [node name="Brick" type="Node2D" unique_id=84797110]
 script = ExtResource("1_t5cmc")
@@ -14,10 +14,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -5.0
-offset_right = 16.0
-offset_bottom = 5.0
+offset_left = -18.0
+offset_top = -6.0
+offset_right = 18.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 
