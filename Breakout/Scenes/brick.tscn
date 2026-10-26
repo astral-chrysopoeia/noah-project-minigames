@@ -5,7 +5,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5cmc"]
 size = Vector2(36, 12)
 
-[node name="Brick" type="Node2D" unique_id=84797110]
+[node name="Brick" type="StaticBody2D" unique_id=380814050]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_t5cmc")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1324745510]
@@ -21,7 +23,5 @@ offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Area2D" type="Area2D" parent="." unique_id=2001608948]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=60183783]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=60183783]
 shape = SubResource("RectangleShape2D_t5cmc")

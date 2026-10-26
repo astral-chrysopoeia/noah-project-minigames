@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcool"]
 size = Vector2(144, 12)
 
-[node name="Paddle" type="CharacterBody2D" unique_id=1485609856]
+[node name="Paddle" type="StaticBody2D" unique_id=882999144]
 collision_mask = 6
 script = ExtResource("1_fo7jj")
 

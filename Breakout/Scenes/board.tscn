@@ -3,17 +3,42 @@
 [ext_resource type="PackedScene" uid="uid://bym1tytxtodb1" path="res://Breakout/Scenes/paddle.tscn" id="1_en8vg"]
 [ext_resource type="Script" uid="uid://bl3vqv6nxgw46" path="res://Breakout/Scripts/board.gd" id="1_x2rpc"]
 [ext_resource type="PackedScene" uid="uid://dfh2l2u2vxcc7" path="res://Breakout/Scenes/ball.tscn" id="2_x2rpc"]
+[ext_resource type="FontFile" uid="uid://n7kbvhodq18g" path="res://Fonts/PixelOperator8.ttf" id="2_xhn7e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x2rpc"]
+font = ExtResource("2_xhn7e")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xhn7e"]
+font = ExtResource("2_xhn7e")
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x2rpc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gpo0v"]
+font = ExtResource("2_xhn7e")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_302rw"]
+font = ExtResource("2_xhn7e")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_t18up"]
+font = ExtResource("2_xhn7e")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_vax2o"]
+font = ExtResource("2_xhn7e")
+font_size = 24
 
 [node name="Board" type="Control" unique_id=1932826663]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_x2rpc")
 
-[node name="Node2D" type="Node2D" parent="." unique_id=551235858]
+[node name="Screen" type="Node2D" parent="." unique_id=551235858]
 
-[node name="Border" type="ColorRect" parent="Node2D" unique_id=738625889]
+[node name="Border" type="ColorRect" parent="Screen" unique_id=738625889]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -27,23 +52,67 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.53333336, 0.53333336, 0.53333336, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Node2D" unique_id=1794035314]
+[node name="Background" type="ColorRect" parent="Screen" unique_id=1794035314]
 offset_left = -268.0
 offset_top = -368.0
 offset_right = 268.0
 offset_bottom = 368.0
 color = Color(0, 0, 0, 1)
 
+[node name="TopBar" type="ColorRect" parent="Screen" unique_id=1347837115]
+offset_left = -268.0
+offset_top = -368.0
+offset_right = 268.0
+offset_bottom = -320.0
+
+[node name="HUD" type="Control" parent="Screen" unique_id=125821460]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -268.0
+offset_top = -368.0
+offset_right = 268.0
+offset_bottom = 368.0
+
+[node name="CurrentScore" type="Label" parent="Screen/HUD" unique_id=312092113]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 114.0
+offset_bottom = 35.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_x2rpc")
+vertical_alignment = 1
+
+[node name="BestScore" type="Label" parent="Screen/HUD" unique_id=404818789]
+layout_mode = 0
+offset_left = 368.0
+offset_top = 12.0
+offset_right = 524.0
+offset_bottom = 35.0
+text = "Best: 000000"
+label_settings = SubResource("LabelSettings_xhn7e")
+vertical_alignment = 1
+
+[node name="Lives" type="Control" parent="Screen/HUD" unique_id=102109569]
+anchors_preset = 0
+offset_top = 688.0
+offset_right = 536.0
+offset_bottom = 736.0
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1798512936]
 
-[node name="CharacterBody2D" parent="." unique_id=1485609856 instance=ExtResource("1_en8vg")]
+[node name="Paddle" parent="." unique_id=1485609856 node_paths=PackedStringArray("board") instance=ExtResource("1_en8vg")]
 position = Vector2(0, 304)
-speed = 4
+starting_speed = 250.0
+width = 144
+board = NodePath("..")
 
 [node name="Bricks" type="Node2D" parent="." unique_id=871206958]
 
-[node name="Ball" parent="." unique_id=1344927311 instance=ExtResource("2_x2rpc")]
-position = Vector2(0, 256)
+[node name="Ball" parent="." unique_id=1344927311 node_paths=PackedStringArray("board") instance=ExtResource("2_x2rpc")]
+position = Vector2(0, 284)
+starting_speed = 250.0
+board = NodePath("..")
 
 [node name="Walls" type="Node2D" parent="." unique_id=417670377]
 
@@ -56,9 +125,9 @@ collision_mask = 5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall" unique_id=737056961]
 shape = SubResource("WorldBoundaryShape2D_x2rpc")
 
-[node name="BottomWall" type="StaticBody2D" parent="Walls" unique_id=552464735]
-position = Vector2(0, 368)
-collision_layer = 2
+[node name="BottomWall" type="Area2D" parent="Walls" unique_id=779464443]
+position = Vector2(0, 319)
+collision_layer = 8
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall" unique_id=1339401869]
@@ -81,3 +150,66 @@ collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall" unique_id=1767011000]
 shape = SubResource("WorldBoundaryShape2D_x2rpc")
+
+[node name="GameOverScreen" type="Control" parent="." unique_id=1465655404]
+visible = false
+anchors_preset = 0
+offset_left = -268.0
+offset_top = -320.0
+offset_right = 268.0
+offset_bottom = 368.0
+
+[node name="Screen" type="ColorRect" parent="GameOverScreen" unique_id=1879718714]
+layout_mode = 0
+offset_right = 536.0
+offset_bottom = 688.0
+color = Color(0, 0, 0, 0.6)
+
+[node name="WinText" type="Label" parent="GameOverScreen" unique_id=963648202]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 152.0
+offset_right = 421.0
+offset_bottom = 200.0
+text = "You Win!"
+label_settings = SubResource("LabelSettings_gpo0v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverText" type="Label" parent="GameOverScreen" unique_id=321901339]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 127.0
+offset_right = 367.0
+offset_bottom = 226.0
+text = "Game
+Over!"
+label_settings = SubResource("LabelSettings_302rw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayAgainText" type="Label" parent="GameOverScreen" unique_id=1471292587]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 295.0
+offset_right = 388.0
+offset_bottom = 346.0
+text = "Press E
+to play again"
+label_settings = SubResource("LabelSettings_t18up")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitText" type="Label" parent="GameOverScreen" unique_id=205109239]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 412.0
+offset_right = 382.0
+offset_bottom = 463.0
+text = "Press Esc
+to quit game"
+label_settings = SubResource("LabelSettings_vax2o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Walls/BottomWall" to="." method="_on_bottom_wall_body_entered"]

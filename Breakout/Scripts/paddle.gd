@@ -1,16 +1,21 @@
-extends CharacterBody2D
+extends StaticBody2D
 
+class_name BreakoutPaddle
 
-@export var speed := 2
+@export var starting_speed := 2.0
 @export var width: int
+@export var board : BreakoutBoard
 
-var speed_multiplier = 50
+var current_speed: float
+
+func start():
+	position.x = 0
+	current_speed = starting_speed
 
 func _physics_process(delta: float) -> void:
+	if not board.game_active:
+		return
 	var direction := Input.get_axis("left", "right")
-	if direction:
-		velocity.x = direction * (speed * speed_multiplier)
-	else:
-		velocity.x = move_toward(velocity.x, 0, (speed * speed_multiplier))
-
-	move_and_slide()
+	direction += Input.get_axis("navLeft", "navRight")
+	direction = clampf(direction, -1, 1)
+	position.x = clampf(position.x + (direction * current_speed * delta), -196, 196)

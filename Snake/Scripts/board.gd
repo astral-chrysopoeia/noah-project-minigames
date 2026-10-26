@@ -44,6 +44,7 @@ func fruit_check(pos):
 	# checks all currently spawned fruits for if pos is already occupied
 	for fruit in fruits.get_children():
 		if pos == fruit.pos:
+			# Dusty, put code here to make collecting a fruit give a sanity boost
 			fruit.queue_free()
 			return true
 	return false
@@ -94,6 +95,7 @@ func game_over():
 	game_over_screen.show()
 	if snake.score > BestScores.snake_highscore:
 		BestScores.snake_highscore = snake.score
+		# Dusty, put code here to boost sanity when setting a highscore
 	update_best()
 
 func play_again():

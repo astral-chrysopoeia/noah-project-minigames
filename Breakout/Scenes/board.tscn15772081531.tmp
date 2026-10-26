@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://yibrb3daljc5"]
+
+[ext_resource type="PackedScene" uid="uid://bym1tytxtodb1" path="res://Breakout/Scenes/paddle.tscn" id="1_en8vg"]
+[ext_resource type="Script" uid="uid://bl3vqv6nxgw46" path="res://Breakout/Scripts/board.gd" id="1_x2rpc"]
+[ext_resource type="PackedScene" uid="uid://dfh2l2u2vxcc7" path="res://Breakout/Scenes/ball.tscn" id="2_x2rpc"]
+[ext_resource type="FontFile" uid="uid://n7kbvhodq18g" path="res://Fonts/PixelOperator8.ttf" id="2_xhn7e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x2rpc"]
+font = ExtResource("2_xhn7e")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xhn7e"]
+font = ExtResource("2_xhn7e")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x2rpc"]
+
+[node name="Board" type="Control" unique_id=1932826663]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_x2rpc")
+
+[node name="Screen" type="Node2D" parent="." unique_id=551235858]
+
+[node name="Border" type="ColorRect" parent="Screen" unique_id=738625889]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -400.0
+offset_right = 300.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+
+[node name="Background" type="ColorRect" parent="Screen" unique_id=1794035314]
+offset_left = -268.0
+offset_top = -368.0
+offset_right = 268.0
+offset_bottom = 368.0
+color = Color(0, 0, 0, 1)
+
+[node name="TopBar" type="ColorRect" parent="Screen" unique_id=1347837115]
+offset_left = -268.0
+offset_top = -368.0
+offset_right = 268.0
+offset_bottom = -320.0
+
+[node name="HUD" type="Control" parent="Screen" unique_id=125821460]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -268.0
+offset_top = -368.0
+offset_right = 268.0
+offset_bottom = 368.0
+
+[node name="CurrentScore" type="Label" parent="Screen/HUD" unique_id=312092113]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 114.0
+offset_bottom = 35.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_x2rpc")
+vertical_alignment = 1
+
+[node name="BestScore" type="Label" parent="Screen/HUD" unique_id=404818789]
+layout_mode = 0
+offset_left = 368.0
+offset_top = 12.0
+offset_right = 524.0
+offset_bottom = 35.0
+text = "Best: 000000"
+label_settings = SubResource("LabelSettings_xhn7e")
+vertical_alignment = 1
+
+[node name="Lives" type="Control" parent="Screen/HUD" unique_id=102109569]
+anchors_preset = 0
+offset_top = 688.0
+offset_right = 568.0
+offset_bottom = 736.0
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1798512936]
+
+[node name="Paddle" parent="." unique_id=1485609856 node_paths=PackedStringArray("board") instance=ExtResource("1_en8vg")]
+position = Vector2(0, 304)
+starting_speed = 250.0
+width = 144
+board = NodePath("..")
+
+[node name="Bricks" type="Node2D" parent="." unique_id=871206958]
+
+[node name="Ball" parent="." unique_id=1344927311 node_paths=PackedStringArray("board") instance=ExtResource("2_x2rpc")]
+position = Vector2(0, 284)
+starting_speed = 250.0
+board = NodePath("..")
+
+[node name="Walls" type="Node2D" parent="." unique_id=417670377]
+
+[node name="TopWall" type="StaticBody2D" parent="Walls" unique_id=2037899628]
+position = Vector2(0, -320)
+rotation = 3.1415927
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall" unique_id=737056961]
+shape = SubResource("WorldBoundaryShape2D_x2rpc")
+
+[node name="BottomWall" type="Area2D" parent="Walls" unique_id=779464443]
+position = Vector2(0, 319)
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall" unique_id=1339401869]
+shape = SubResource("WorldBoundaryShape2D_x2rpc")
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls" unique_id=188078191]
+position = Vector2(-268, 0)
+rotation = 1.5707964
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall" unique_id=375905010]
+shape = SubResource("WorldBoundaryShape2D_x2rpc")
+
+[node name="RightWall" type="StaticBody2D" parent="Walls" unique_id=1892268419]
+position = Vector2(268, 0)
+rotation = -1.5707964
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall" unique_id=1767011000]
+shape = SubResource("WorldBoundaryShape2D_x2rpc")
+
+[connection signal="body_entered" from="Walls/BottomWall" to="." method="_on_bottom_wall_body_entered"]

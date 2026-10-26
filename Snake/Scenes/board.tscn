@@ -20,6 +20,10 @@ font_size = 48
 font = ExtResource("3_5c3n7")
 font_size = 24
 
+[sub_resource type="LabelSettings" id="LabelSettings_nwijh"]
+font = ExtResource("3_5c3n7")
+font_size = 24
+
 [sub_resource type="LabelSettings" id="LabelSettings_ogi73"]
 font = ExtResource("3_5c3n7")
 font_size = 24
@@ -80,6 +84,7 @@ vertical_alignment = 1
 position = Vector2(-248, -232)
 start_length = 2
 start_pos = Vector2(5, 12)
+move_delay = 0.2
 board = NodePath("..")
 
 [node name="Fruits" type="Node2D" parent="." unique_id=52824738]
@@ -121,6 +126,17 @@ offset_bottom = 419.0
 text = "Press E
 to play again"
 label_settings = SubResource("LabelSettings_qny6f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitGame" type="Label" parent="GameOverScreen" unique_id=1833802282]
+offset_left = 154.0
+offset_top = 461.0
+offset_right = 382.0
+offset_bottom = 512.0
+text = "Press Esc
+to quit game"
+label_settings = SubResource("LabelSettings_nwijh")
 horizontal_alignment = 1
 vertical_alignment = 1
 

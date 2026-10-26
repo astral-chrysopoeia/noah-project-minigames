@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bhseb8cxdj0s2"]
+
+[ext_resource type="Texture2D" uid="uid://b3n2xjguyjjyv" path="res://Breakout/Sprites/breakout_ball.png" id="1_76vxn"]
+
+[node name="LifeSprite" type="Sprite2D" unique_id=1387181265]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
+texture = ExtResource("1_76vxn")
