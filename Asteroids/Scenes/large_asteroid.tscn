@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://st22c2au0hne"]
+
+[ext_resource type="Script" uid="uid://bdoq723pyoe2l" path="res://Asteroids/Scripts/large_asteroid.gd" id="1_w3tlk"]
+[ext_resource type="Texture2D" uid="uid://dnebx6bd837l" path="res://Asteroids/Sprites/Large_Asteroid.png" id="2_xlwp2"]
+
+[node name="LargeAsteroid" type="StaticBody2D" unique_id=36152933]
+script = ExtResource("1_w3tlk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1079639128]
+texture = ExtResource("2_xlwp2")
+
+[node name="Collider" type="CollisionPolygon2D" parent="." unique_id=1453329359]
+polygon = PackedVector2Array(11, -13, 10, 12, 1, 12, -12, 8, -12, -1, -7, -10, 3, -14)

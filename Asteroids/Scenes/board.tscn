@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://mlb343r8djd3"]
+
+[ext_resource type="Script" uid="uid://gwhh3odhou1d" path="res://Asteroids/Scripts/board.gd" id="1_g8v5v"]
+[ext_resource type="PackedScene" uid="uid://veaka5fydjot" path="res://Asteroids/Scenes/ship.tscn" id="2_f1f32"]
+
+[node name="Board" type="Control" unique_id=417717903]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 800.0
+offset_bottom = 600.0
+script = ExtResource("1_g8v5v")
+spawn_radius = 200
+asteroid_speed_range = Vector2(10, 15)
+missile_base_speed = 50.0
+
+[node name="Screen" type="Control" parent="." unique_id=71222673]
+anchors_preset = 0
+offset_right = 800.0
+offset_bottom = 600.0
+
+[node name="Border" type="ColorRect" parent="Screen" unique_id=1346001648]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 600.0
+color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+
+[node name="Background" type="ColorRect" parent="Screen" unique_id=1420792182]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 768.0
+offset_bottom = 568.0
+color = Color(0, 0, 0, 1)
+
+[node name="Ship" parent="." unique_id=965651394 node_paths=PackedStringArray("board") instance=ExtResource("2_f1f32")]
+shot_cooldown = 0.2
+acceleration = 100.0
+rotation_speed = 60.0
+max_speed = 150.0
+board = NodePath("..")
+
+[node name="Asteroids" type="Node2D" parent="." unique_id=2056305123]
+
+[node name="Bullets" type="Node2D" parent="." unique_id=1588744101]

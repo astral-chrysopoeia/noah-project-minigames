@@ -23,10 +23,11 @@ func start():
 	direction_vector = Vector2.UP.rotated(deg_to_rad(direction_angle))
 
 func launch():
+	board.update_score(0)
 	moving = true
 
 func _physics_process(delta: float) -> void:
-	if not moving:
+	if not moving or not board.game_active:
 		return
 	if board.bricks.get_child_count() == 0:
 		board.next_level()
@@ -38,7 +39,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			if collider is BreakoutBrick:
 				collider.hit()
-				board.update_score(0)
 			direction_vector = direction_vector.bounce(collision_info.get_normal())
 
 func calculate_paddle_bounce(collision: KinematicCollision2D, paddle: Node2D) -> Vector2:

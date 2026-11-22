@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Noah Project Minigames"
-run/main_scene="uid://ddn2vmru6xuh8"
+run/main_scene="uid://mlb343r8djd3"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,7 +21,7 @@ BestScores="*uid://cetay6xa4hlkl"
 
 [display]
 
-window/size/viewport_width=600
+window/size/viewport_width=800
 window/size/viewport_height=800
 
 [input]

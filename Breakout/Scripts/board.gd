@@ -27,7 +27,7 @@ var score_since_oneup: int
 @export var brick_rows := 5
 @export var base_points := 100
 @export var oneup_score := 10000
-@export var end_level := 8
+@export var end_level := 1
 @export var max_lives := 10
 
 func _ready() -> void:
@@ -64,7 +64,7 @@ func _input(event: InputEvent) -> void:
 		play_again()
 
 func spawn_bricks(rows):
-	var y_pos = -280
+	var y_pos = -258
 	var row = rows
 	for i in range(rows):
 		var x_pos = -242
@@ -102,13 +102,14 @@ func _on_bottom_wall_body_entered(body: Node2D) -> void:
 			paddle.position.x = 0
 
 func next_level():
-	level += 1
 	ball.moving = false
 	game_active = false
 	await get_tree().create_timer(.5).timeout
 	# Dusty, put code here to boost sanity when reaching the next level
+	level += 1
 	if level > end_level:
 		game_over(true)
+		return
 	paddle.position.x = 0
 	spawn_bricks(brick_rows)
 	spawn_ball()
@@ -155,8 +156,10 @@ func oneup():
 	update_lives_display()
 
 func game_over(win: bool):
+	dead = true
 	end = true
 	game_over_screen.show()
+	print("game_over")
 	if current_score > BestScores.breakout_highscore:
 		BestScores.breakout_highscore = current_score
 		# Dusty, put code here to boost sanity when setting a high score

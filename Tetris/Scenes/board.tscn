@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c78umsxsxuw47"]
+
+[node name="Board" type="Control" unique_id=560084301]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 600.0
+offset_bottom = 800.0
+
+[node name="Screen" type="Control" parent="." unique_id=482427162]
+anchors_preset = 0
+offset_right = 600.0
+offset_bottom = 800.0
+
+[node name="ScreenBorder" type="ColorRect" parent="Screen" unique_id=340287832]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 800.0
+color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+
+[node name="Background" type="ColorRect" parent="Screen" unique_id=1398385617]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 568.0
+offset_bottom = 768.0
+color = Color(0, 0, 0, 1)

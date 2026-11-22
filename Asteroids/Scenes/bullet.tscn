@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cbmh5c25ivs86"]
+
+[ext_resource type="Script" uid="uid://cgmur3323t6hx" path="res://Asteroids/Scripts/bullet.gd" id="1_ht6rl"]
+[ext_resource type="Texture2D" uid="uid://cs4fsclxaw11h" path="res://Asteroids/Sprites/Bullet.png" id="2_3cgjx"]
+
+[node name="Bullet" type="Area2D" unique_id=1371604204]
+script = ExtResource("1_ht6rl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2069258811]
+texture = ExtResource("2_3cgjx")
+
+[node name="Collider" type="CollisionPolygon2D" parent="." unique_id=561959274]
+polygon = PackedVector2Array(0, -6, 2, -1, 2, 5, -2, 5, -2, -1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

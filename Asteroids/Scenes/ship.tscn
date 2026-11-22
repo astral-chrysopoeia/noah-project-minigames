@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://veaka5fydjot"]
+
+[ext_resource type="Script" uid="uid://c0eitwuwb5iyx" path="res://Asteroids/Scripts/ship.gd" id="1_n0g62"]
+[ext_resource type="Texture2D" uid="uid://buqyebl33lnuc" path="res://Asteroids/Sprites/Ship.png" id="2_hwdvh"]
+
+[node name="Ship" type="Area2D" unique_id=742227195]
+z_index = 1
+script = ExtResource("1_n0g62")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=869996688]
+texture = ExtResource("2_hwdvh")
+
+[node name="Collider" type="CollisionPolygon2D" parent="." unique_id=439577671]
+polygon = PackedVector2Array(10, 10, -10, 10, 0, -13)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
